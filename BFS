@@ -17,4 +17,4 @@ graph = {
     'C': ['F'],
     'D': [], 'E': ['F'], 'F': []
 }
-bfs(graph, 'A')
+bfs(graph,'A')
