@@ -1,0 +1,31 @@
+def dfs_iterative(graph, start):
+    visited = set()         # To keep track of visited nodes
+    stack = [start]         # Use a stack (LIFO) for DFS
+
+    print("DFS Traversal:")
+    while stack:
+        vertex = stack.pop()         # Take the top node from the stack
+
+        if vertex not in visited:
+            print(vertex, end=' ')   # Visit the node
+            visited.add(vertex)      # Mark as visited
+
+            # Add neighbors to the stack (reversed for left-to-right DFS)
+            # If not reversed, DFS order will be right-to-left
+            neighbors = graph[vertex]
+            for neighbor in reversed(neighbors):
+                if neighbor not in visited:
+                    stack.append(neighbor)
+
+# Define the graph (same as before)
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+}
+
+# Call DFS
+dfs_iterative(graph, 'A')
