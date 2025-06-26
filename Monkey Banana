@@ -1,0 +1,48 @@
+class MonkeyBananaGrid:
+    def __init__(self):
+        self.grid_size = 5
+        self.monkey = [4, 0]
+        self.box = [2, 1]
+        self.banana = [0, 2]
+        self.on_box = False
+        self.has_banana = False
+
+    def move_monkey(self, target):
+        print(f"Monkey walks from {self.monkey} to {target}")
+        self.monkey = target.copy()
+
+    def push_box(self, target):
+        if self.monkey == self.box:
+            print(f"Monkey pushes box from {self.box} to {target}")
+            self.box = target.copy()
+            self.monkey = target.copy()
+        else:
+            print("Monkey must be at the box to push it.")
+
+    def climb_box(self):
+        if self.monkey == self.box:
+            self.on_box = True
+            print("Monkey climbs on the box.")
+        else:
+            print("Monkey must be at the box to climb.")
+
+    def grab_banana(self):
+        if self.on_box and self.box == [self.banana[0] + 1, self.banana[1]]:
+            self.has_banana = True
+            print("Monkey grabs the banana!")
+        else:
+            print("Monkey can't reach the banana.")
+
+    def solve(self):
+        print("\n--- 2D Grid Monkey-Banana Problem ---")
+
+        self.move_monkey(self.box)
+        self.push_box([self.banana[0] + 1, self.banana[1]])  # Move box under banana
+        self.climb_box()
+        self.grab_banana()
+
+        print("✅ Success!" if self.has_banana else "❌ Failed.")
+
+
+# Run
+MonkeyBananaGrid().solve()
